@@ -1,10 +1,11 @@
 syntax = "proto3";
 
 package core;
-option go_package = ".;core";
+
+option go_package = "distributed-system/pkg/pb;pb";
 
 message Request {
-  string action = 1;
+  string data = 1;
 }
 
 message Response {
@@ -12,6 +13,6 @@ message Response {
 }
 
 service NodeService {
-  rpc ReportStatus(Request) returns (Response){};
-  rpc AssignTask(Request) returns (stream Response){};
+  rpc ReportStatus(Request) returns (Response);
+  rpc AssignTask(Request) returns (stream Response);
 }

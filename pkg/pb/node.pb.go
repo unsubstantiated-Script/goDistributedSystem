@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: node.proto
 
-package core
+package pb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -23,7 +23,7 @@ const (
 
 type Request struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Action        string                 `protobuf:"bytes,1,opt,name=action,proto3" json:"action,omitempty"`
+	Data          string                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -58,9 +58,9 @@ func (*Request) Descriptor() ([]byte, []int) {
 	return file_node_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Request) GetAction() string {
+func (x *Request) GetData() string {
 	if x != nil {
-		return x.Action
+		return x.Data
 	}
 	return ""
 }
@@ -114,15 +114,15 @@ var File_node_proto protoreflect.FileDescriptor
 const file_node_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"node.proto\x12\x04core\"!\n" +
-	"\aRequest\x12\x16\n" +
-	"\x06action\x18\x01 \x01(\tR\x06action\"\x1e\n" +
+	"node.proto\x12\x04core\"\x1d\n" +
+	"\aRequest\x12\x12\n" +
+	"\x04data\x18\x01 \x01(\tR\x04data\"\x1e\n" +
 	"\bResponse\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\tR\x04data2o\n" +
-	"\vNodeService\x12/\n" +
-	"\fReportStatus\x12\r.core.Request\x1a\x0e.core.Response\"\x00\x12/\n" +
+	"\x04data\x18\x01 \x01(\tR\x04data2k\n" +
+	"\vNodeService\x12-\n" +
+	"\fReportStatus\x12\r.core.Request\x1a\x0e.core.Response\x12-\n" +
 	"\n" +
-	"AssignTask\x12\r.core.Request\x1a\x0e.core.Response\"\x000\x01B\bZ\x06.;coreb\x06proto3"
+	"AssignTask\x12\r.core.Request\x1a\x0e.core.Response0\x01B\x1eZ\x1cdistributed-system/pkg/pb;pbb\x06proto3"
 
 var (
 	file_node_proto_rawDescOnce sync.Once

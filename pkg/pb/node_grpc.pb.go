@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: node.proto
 
-package core
+package pb
 
 import (
 	context "context"
