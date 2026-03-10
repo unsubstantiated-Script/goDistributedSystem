@@ -2,17 +2,16 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v3.21.12
-// source: proto/node.proto
+// source: node.proto
 
 package pb
 
 import (
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
-
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -24,14 +23,14 @@ const (
 
 type Request struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Action        string                 `protobuf:"bytes,1,opt,name=action,proto3" json:"action,omitempty"`
+	Data          string                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Request) Reset() {
 	*x = Request{}
-	mi := &file_proto_node_proto_msgTypes[0]
+	mi := &file_node_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +42,7 @@ func (x *Request) String() string {
 func (*Request) ProtoMessage() {}
 
 func (x *Request) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_node_proto_msgTypes[0]
+	mi := &file_node_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,12 +55,12 @@ func (x *Request) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request.ProtoReflect.Descriptor instead.
 func (*Request) Descriptor() ([]byte, []int) {
-	return file_proto_node_proto_rawDescGZIP(), []int{0}
+	return file_node_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Request) GetAction() string {
+func (x *Request) GetData() string {
 	if x != nil {
-		return x.Action
+		return x.Data
 	}
 	return ""
 }
@@ -75,7 +74,7 @@ type Response struct {
 
 func (x *Response) Reset() {
 	*x = Response{}
-	mi := &file_proto_node_proto_msgTypes[1]
+	mi := &file_node_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -87,7 +86,7 @@ func (x *Response) String() string {
 func (*Response) ProtoMessage() {}
 
 func (x *Response) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_node_proto_msgTypes[1]
+	mi := &file_node_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -100,7 +99,7 @@ func (x *Response) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Response.ProtoReflect.Descriptor instead.
 func (*Response) Descriptor() ([]byte, []int) {
-	return file_proto_node_proto_rawDescGZIP(), []int{1}
+	return file_node_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Response) GetData() string {
@@ -110,38 +109,39 @@ func (x *Response) GetData() string {
 	return ""
 }
 
-var File_proto_node_proto protoreflect.FileDescriptor
+var File_node_proto protoreflect.FileDescriptor
 
-const file_proto_node_proto_rawDesc = "" +
+const file_node_proto_rawDesc = "" +
 	"\n" +
-	"\x10proto/node.proto\x12\x04core\"!\n" +
-	"\aRequest\x12\x16\n" +
-	"\x06action\x18\x01 \x01(\tR\x06action\"\x1e\n" +
+	"\n" +
+	"node.proto\x12\x04core\"\x1d\n" +
+	"\aRequest\x12\x12\n" +
+	"\x04data\x18\x01 \x01(\tR\x04data\"\x1e\n" +
 	"\bResponse\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\tR\x04data2o\n" +
-	"\vNodeService\x12/\n" +
-	"\fReportStatus\x12\r.core.Request\x1a\x0e.core.Response\"\x00\x12/\n" +
+	"\x04data\x18\x01 \x01(\tR\x04data2k\n" +
+	"\vNodeService\x12-\n" +
+	"\fReportStatus\x12\r.core.Request\x1a\x0e.core.Response\x12-\n" +
 	"\n" +
-	"AssignTask\x12\r.core.Request\x1a\x0e.core.Response\"\x000\x01B\bZ\x06.;coreb\x06proto3"
+	"AssignTask\x12\r.core.Request\x1a\x0e.core.Response0\x01B\x1eZ\x1cdistributed-system/pkg/pb;pbb\x06proto3"
 
 var (
-	file_proto_node_proto_rawDescOnce sync.Once
-	file_proto_node_proto_rawDescData []byte
+	file_node_proto_rawDescOnce sync.Once
+	file_node_proto_rawDescData []byte
 )
 
-func file_proto_node_proto_rawDescGZIP() []byte {
-	file_proto_node_proto_rawDescOnce.Do(func() {
-		file_proto_node_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_node_proto_rawDesc), len(file_proto_node_proto_rawDesc)))
+func file_node_proto_rawDescGZIP() []byte {
+	file_node_proto_rawDescOnce.Do(func() {
+		file_node_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_node_proto_rawDesc), len(file_node_proto_rawDesc)))
 	})
-	return file_proto_node_proto_rawDescData
+	return file_node_proto_rawDescData
 }
 
-var file_proto_node_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_proto_node_proto_goTypes = []any{
+var file_node_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_node_proto_goTypes = []any{
 	(*Request)(nil),  // 0: core.Request
 	(*Response)(nil), // 1: core.Response
 }
-var file_proto_node_proto_depIdxs = []int32{
+var file_node_proto_depIdxs = []int32{
 	0, // 0: core.NodeService.ReportStatus:input_type -> core.Request
 	0, // 1: core.NodeService.AssignTask:input_type -> core.Request
 	1, // 2: core.NodeService.ReportStatus:output_type -> core.Response
@@ -153,26 +153,26 @@ var file_proto_node_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_proto_node_proto_init() }
-func file_proto_node_proto_init() {
-	if File_proto_node_proto != nil {
+func init() { file_node_proto_init() }
+func file_node_proto_init() {
+	if File_node_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_node_proto_rawDesc), len(file_proto_node_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_node_proto_rawDesc), len(file_node_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_node_proto_goTypes,
-		DependencyIndexes: file_proto_node_proto_depIdxs,
-		MessageInfos:      file_proto_node_proto_msgTypes,
+		GoTypes:           file_node_proto_goTypes,
+		DependencyIndexes: file_node_proto_depIdxs,
+		MessageInfos:      file_node_proto_msgTypes,
 	}.Build()
-	File_proto_node_proto = out.File
-	file_proto_node_proto_goTypes = nil
-	file_proto_node_proto_depIdxs = nil
+	File_node_proto = out.File
+	file_node_proto_goTypes = nil
+	file_node_proto_depIdxs = nil
 }
