@@ -2,12 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v3.21.12
-// source: node.proto
+// source: proto/node.proto
 
-package core
+package pb
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -159,5 +160,5 @@ var NodeService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "node.proto",
+	Metadata: "proto/node.proto",
 }
