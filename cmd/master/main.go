@@ -1,20 +1,39 @@
 package main
 
 import (
-	"fmt"
+	"goDistributedSystem/internal/master"
+	"goDistributedSystem/pkg/pb"
+	"log"
+	"net"
+	"net/http"
+
+	"google.golang.org/grpc"
 )
 
-//TIP <p>To run your code, right-click the code and select <b>Run</b>.</p> <p>Alternatively, click
-// the <icon src="AllIcons.Actions.Execute"/> icon in the gutter and select the <b>Run</b> menu item from here.</p>
 func main() {
-	//TIP <p>Press <shortcut actionId="ShowIntentionActions"/> when your caret is at the underlined text
-	// to see how GoLand suggests fixing the warning.</p><p>Alternatively, if available, click the lightbulb to view possible fixes.</p>
-	s := "gopher"
-	fmt.Printf("Hello and welcome, %s!\n", s)
+	lis, err := net.Listen("tcp", ":50051")
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
 
-	for i := 1; i <= 5; i++ {
-		//TIP <p>To start your debugging session, right-click your code in the editor and select the Debug option.</p> <p>We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-		// for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.</p>
-		fmt.Println("i =", 100/i)
+	grpcServer := grpc.NewServer()
+	nodeServer := master.NewNodeServer()
+
+	pb.RegisterNodeServiceServer(grpcServer, nodeServer)
+
+	// Start HTTP API server on port 8080
+	mux := http.NewServeMux()
+	mux.HandleFunc("/tasks", nodeServer.AddTaskHandler)
+
+	go func() {
+		log.Println("HTTP API listening on port 8080")
+		if err := http.ListenAndServe(":8080", mux); err != nil {
+			log.Fatalf("HTTP server failed: %v", err)
+		}
+	}()
+
+	log.Println("master gRPC listening on port 50051")
+	if err := grpcServer.Serve(lis); err != nil {
+		log.Fatal(err)
 	}
 }
