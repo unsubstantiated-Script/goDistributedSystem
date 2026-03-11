@@ -45,7 +45,7 @@ func Run(masterAddr string) error {
 
 	for {
 		resp, err := stream.Recv()
-		if err != io.EOF {
+		if err == io.EOF {
 			log.Println("task stream closed")
 			return nil
 		}
@@ -54,7 +54,7 @@ func Run(masterAddr string) error {
 			return err
 		}
 
-		log.Printf("recieved task: %s", resp.Data)
+		log.Printf("received task: %s", resp.Data)
 
 		time.Sleep(2 * time.Second)
 
