@@ -1,6 +1,10 @@
 Next Release
 -
 
+
+v1.2.0
+- Project reorganization
+
 v1.1.0
 - ADD: Add support for `go-grpc-middleware`
 - ADD: Add nodes for gRPC
